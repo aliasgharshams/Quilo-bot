@@ -56,8 +56,11 @@ echo -e "$ORANGE   └───────────────────�
   echo ""
 echo -ne "$WHITE Enter option: $RESET"
 
-read choice
+read -r choice
 
+choice=$(echo "$choice" | tr -d '\r\n' | xargs)
+
+echo "DEBUG: [$choice]"
 
 case $choice in
 
