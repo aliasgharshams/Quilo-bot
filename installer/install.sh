@@ -107,7 +107,9 @@ case $choice in
     echo ""
     echo -e "$ORANGE Invalid option! Please select 1-6$RESET"
     sleep 2
-    exec "$(realpath "$0")"
+read -p "Press Enter to return menu..."
+   
+ exec "$(realpath "$0")"
     ;;
 
 esac
