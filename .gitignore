@@ -1,0 +1,7 @@
+app/config/config.php
+.env
+*.log
+*.sql
+storage/*
+.vscode/
+.idea/
