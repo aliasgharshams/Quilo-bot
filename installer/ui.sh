@@ -6,6 +6,12 @@ RESET="\e[0m"
 
 BASE="/var/www/Quilo-bot"
 
+VERSION=$(cat $BASE/version.json 2>/dev/null | grep -o '"version"[[:space:]]*:[[:space:]]*"[^"]*"' | grep -o '[0-9]\+\.[0-9]\+\.[0-9]\+')
+
+if [ -z "$VERSION" ]; then
+    VERSION="0.0.0"
+fi
+
 clear
 
 
@@ -38,7 +44,7 @@ echo ""
 
 echo -e "${ORANGE}+----------------------+ +----------------------+ +----------------------+${RESET}"
 
-echo -e "${ORANGE}|${RESET}     ${WHITE}Version 0.1.0${RESET}      ${ORANGE}|${RESET}      ${ORANGE}Quilo ${WHITE}bot${RESET}       ${ORANGE}|${RESET} ${WHITE}Support: @Quilo_support${RESET} ${ORANGE}|${RESET}"
+echo -e "${ORANGE}|${RESET}     ${WHITE}Version $VERSION${RESET}      ${ORANGE}|${RESET}      ${ORANGE}Quilo ${WHITE}bot${RESET}       ${ORANGE}|${RESET} ${WHITE}Support: @Quilo_support${RESET} ${ORANGE}|${RESET}"
 
 echo -e "${ORANGE}+----------------------+ +----------------------+ +----------------------+${RESET}"
 
