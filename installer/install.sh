@@ -8,6 +8,8 @@ exec 2>&1
 
 ORANGE='\033[38;5;208m'
 WHITE='\033[1;37m'
+GREEN='\033[1;32m'
+RED='\033[1;31m'
 RESET='\033[0m'
 
 VERSION=$(cat VERSION 2>/dev/null || echo "1.1.0")
@@ -56,47 +58,42 @@ echo -ne "$WHITE Enter option: $RESET"
 
 read choice
 
-echo "DEBUG: [$choice]"
 
 case $choice in
 
 1)
-    echo "Install Bot selected"
-    exit
+    choice=1
     ;;
 
 2)
-    echo "Update Bot selected"
-    exit
+    choice=2
     ;;
 
 3)
-    echo "Backup selected"
-    exit
+    choice=3
     ;;
 
 4)
-    echo "Restore selected"
-    exit
+    choice=4
     ;;
 
 5)
-    echo "Uninstall selected"
-    exit
+    choice=5
     ;;
 
 6)
     exit 0
     ;;
-    
+
 *)
     echo ""
     echo -e "$ORANGE Invalid option! Please select 1-6$RESET"
     sleep 2
-    exec "$0"
+    exec "$(realpath "$0")"
     ;;
 
 esac
+
 
 #################################
 # BACKUP
@@ -105,8 +102,9 @@ esac
 if [ "$choice" = "3" ]; then
 
 
-echo ""
+echo -e "$ORANGE"
 echo "Creating Quilo Backup..."
+echo -e "$RESET"
 
 
 BACKUP_DIR="/var/backups/quilo"
@@ -117,14 +115,13 @@ mkdir -p $BACKUP_DIR
 DATE=$(date +"%Y-%m-%d_%H-%M-%S")
 
 
-echo "Exporting database..."
-
+echo -e "$WHITE Exporting database...$RESET"
 
 mysqldump quilo > /tmp/quilo_database.sql
 
 
 
-echo "Compressing backup..."
+echo -e "$WHITE Compressing backup...$RESET"
 
 
 mkdir -p /tmp/quilo_backup
@@ -148,18 +145,20 @@ rm -rf /tmp/quilo_backup
 
 echo ""
 
-echo "Backup completed ✅"
+echo -e "$GREEN Backup completed ✅ $RESET"
 
 echo ""
 
-echo "Saved file:"
-echo "$BACKUP_DIR/quilo_backup_$DATE.tar.gz"
+echo -e "$WHITE Saved file:$RESET"
+
+echo -e "$ORANGE $BACKUP_DIR/quilo_backup_$DATE.tar.gz $RESET"
 
 
-exit
+read -p "Press Enter to return menu..."
+
+exec "$(realpath "$0")"
 
 fi
-
 
 
 
@@ -172,7 +171,7 @@ if [ "$choice" = "4" ]; then
 
 echo ""
 
-echo "Available backups:"
+echo -e "$ORANGE Available backups:$RESET"
 
 
 BACKUP_DIR="/var/backups/quilo"
@@ -186,9 +185,11 @@ COUNT=${#FILES[@]}
 
 if [ "$COUNT" = "0" ]; then
 
-echo "No backup found"
+echo -e "$RED No backup found $RESET"
 
-exit
+read -p "Press Enter to return menu..."
+
+exec "$(realpath "$0")"
 
 fi
 
@@ -197,7 +198,7 @@ fi
 for i in "${!FILES[@]}"
 do
 
-echo "$((i+1))) ${FILES[$i]}"
+echo -e "$WHITE $((i+1))) ${FILES[$i]} $RESET"
 
 done
 
@@ -215,7 +216,7 @@ SELECTED=${FILES[$((NUMBER-1))]}
 
 echo ""
 
-echo "Restoring:"
+echo -e "$ORANGE Restoring:$RESET"
 
 echo "$SELECTED"
 
@@ -229,9 +230,11 @@ read -p "Continue? (yes/no): " CONFIRM
 
 if [ "$CONFIRM" != "yes" ]; then
 
-echo "Cancelled"
+echo -e "$RED Cancelled $RESET"
 
-exit
+read -p "Press Enter to return menu..."
+
+exec "$(realpath "$0")"
 
 fi
 
@@ -256,7 +259,7 @@ cp -r /tmp/quilo_restore/quilo_backup/Quilo-bot \
 
 
 
-echo "Restoring database..."
+echo -e "$WHITE Restoring database...$RESET"
 
 
 mysql quilo < \
@@ -272,12 +275,15 @@ systemctl reload apache2
 
 echo ""
 
-echo "Restore completed ✅"
+echo -e "$GREEN Restore completed ✅ $RESET"
 
 
-exit
+read -p "Press Enter to return menu..."
+
+exec "$(realpath "$0")"
 
 fi
+
 
 #################################
 # UPDATE
@@ -288,13 +294,14 @@ if [ "$choice" = "2" ]; then
 
 echo ""
 
-echo "Updating Quilo Bot..."
+echo -e "$ORANGE Updating Quilo Bot... $RESET"
+
 
 cd /var/www/Quilo-bot
 
 
 
-echo "Creating safety backup..."
+echo -e "$WHITE Creating safety backup...$RESET"
 
 
 mkdir -p /var/backups/quilo
@@ -306,7 +313,7 @@ tar -czf \
 
 
 
-echo "Pulling latest version..."
+echo -e "$WHITE Pulling latest version...$RESET"
 
 
 git pull origin main
@@ -322,14 +329,14 @@ systemctl reload apache2
 
 echo ""
 
-echo "Update completed ✅"
+echo -e "$GREEN Update completed ✅ $RESET"
 
 
-exit
+read -p "Press Enter to return menu..."
+
+exec "$(realpath "$0")"
 
 fi
-
-
 
 
 
@@ -343,7 +350,7 @@ if [ "$choice" = "1" ]; then
 
 echo ""
 
-echo "Starting installation..."
+echo -e "$ORANGE Starting installation...$RESET"
 
 
 
@@ -367,7 +374,7 @@ curl
 
 echo ""
 
-echo "Downloading Quilo Bot..."
+echo -e "$WHITE Downloading Quilo Bot...$RESET"
 
 
 
@@ -391,7 +398,7 @@ cd /var/www/Quilo-bot
 
 echo ""
 
-echo "Bot information"
+echo -e "$WHITE Bot information$RESET"
 
 
 
@@ -412,7 +419,7 @@ cat > app/config/config.php <<EOF
 
 return [
 
-"version"=>"0.1.0",
+"version"=>"1.2.4",
 
 "app"=>[
 "url"=>"https://$DOMAIN"
@@ -437,13 +444,9 @@ EOF
 
 
 
-
-
-
 echo ""
 
-echo "Creating database..."
-
+echo -e "$WHITE Creating database...$RESET"
 
 
 mysql < installer/database.sql
@@ -453,7 +456,7 @@ mysql < installer/database.sql
 
 echo ""
 
-echo "Configuring Apache..."
+echo -e "$WHITE Configuring Apache...$RESET"
 
 
 
@@ -479,7 +482,7 @@ systemctl reload apache2
 
 echo ""
 
-echo "Installing SSL..."
+echo -e "$WHITE Installing SSL...$RESET"
 
 
 
@@ -496,7 +499,7 @@ certbot --apache \
 
 echo ""
 
-echo "Setting webhook..."
+echo -e "$WHITE Setting webhook...$RESET"
 
 
 
@@ -516,21 +519,19 @@ echo ""
 
 echo "=============================="
 
-echo "Quilo Installed Successfully"
+echo -e "$GREEN Quilo Installed Successfully ✅ $RESET"
 
-echo "Domain: https://$DOMAIN"
+echo -e "$ORANGE Domain: https://$DOMAIN $RESET"
 
 echo "=============================="
 
 
-exit
+
+read -p "Press Enter to return menu..."
+
+exec "$(realpath "$0")"
 
 fi
-
-
-
-
-
 
 #################################
 # UNINSTALL
@@ -539,10 +540,9 @@ fi
 if [ "$choice" = "5" ]; then
 
 
-
 echo ""
 
-echo "Uninstall Quilo Bot"
+echo -e "$ORANGE Uninstall Quilo Bot $RESET"
 
 
 
@@ -552,19 +552,29 @@ read -p "Are you sure? (yes/no): " CONFIRM
 
 if [ "$CONFIRM" != "yes" ]; then
 
-echo "Cancelled"
+echo -e "$RED Cancelled $RESET"
 
-exit
+read -p "Press Enter to return menu..."
+
+exec "$(realpath "$0")"
 
 fi
 
+
+
+echo ""
+
+echo -e "$WHITE Removing Quilo files...$RESET"
 
 
 rm -rf /var/www/Quilo-bot
 
 
 
-a2dissite quilo.conf
+echo -e "$WHITE Disabling Apache site...$RESET"
+
+
+a2dissite quilo.conf 2>/dev/null
 
 
 
@@ -578,10 +588,14 @@ systemctl reload apache2
 
 echo ""
 
-echo "Quilo removed ✅"
+echo -e "$GREEN Quilo removed successfully ✅ $RESET"
 
 
 
-exit
+read -p "Press Enter to return menu..."
+
+exec "$(realpath "$0")"
+
+
 
 fi
