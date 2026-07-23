@@ -174,7 +174,6 @@ echo -e "$ORANGE $BACKUP_DIR/quilo_backup_$DATE.tar.gz $RESET"
 
 read -p "Press Enter to return menu..."
 
-read -p "Press Enter to return menu..."
 
 exec "$(realpath "$0")"
 
@@ -298,7 +297,6 @@ echo ""
 echo -e "$GREEN Restore completed ✅ $RESET"
 
 
-read -p "Press Enter to return menu..."
 
 read -p "Press Enter to return menu..."
 
@@ -356,7 +354,6 @@ echo -e "$GREEN Update completed ✅ $RESET"
 
 read -p "Press Enter to return menu..."
 
-read -p "Press Enter to return menu..."
 
 exec "$(realpath "$0")"
 
