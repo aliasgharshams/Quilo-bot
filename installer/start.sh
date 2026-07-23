@@ -1,6 +1,8 @@
 #!/bin/bash
 
-exec < /dev/tty
+if [ -t 0 ]; then
+    exec < /dev/tty
+fi
 
 clear
 
