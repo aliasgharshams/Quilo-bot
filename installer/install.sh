@@ -56,9 +56,37 @@ echo -ne "$WHITE Enter option: $RESET"
 
 read choice
 
+echo "DEBUG: [$choice]"
+
 case $choice in
 
-1|2|3|4|5|6)
+1)
+    echo "Install Bot selected"
+    exit
+    ;;
+
+2)
+    echo "Update Bot selected"
+    exit
+    ;;
+
+3)
+    echo "Backup selected"
+    exit
+    ;;
+
+4)
+    echo "Restore selected"
+    exit
+    ;;
+
+5)
+    echo "Uninstall selected"
+    exit
+    ;;
+
+6)
+    exit 0
     ;;
     
 *)
