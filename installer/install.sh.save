@@ -18,70 +18,54 @@ echo -e "$ORANGE"
 
 cat <<'EOF'
 
-   ┌──────────────────────────────────────────────────────────────┐
-   │                                                              │
-   │            ██████╗ ██╗   ██╗██╗██╗      ██████               │
-   │           ██╔═══██╗██║   ██║██║██║     ██╔═══██║             │
-   │           ██║   ██║██║   ██║██║██║     ██║   ██║             │
-   │           ██║▄▄ ██║██║   ██║██║██║     ██║   ██║             │
-   │           ╚██████╔╝╚██████╔╝██║███████╗╚██████╔╝             │ 
-   │            ╚═══██╗ ╚═════╝ ╚═╝╚══════╝ ╚═════╝               │
-   │                ██║                                           │
-   │                ╚═╝                                           │
-   └──────────────────────────────────────────────────────────────┘
+
+ ██████╗ ██╗   ██╗██╗██╗      ██████╗ 
+██╔═══██╗██║   ██║██║██║     ██╔═══██╗
+██║   ██║██║   ██║██║██║     ██║   ██║
+██║▄▄ ██║██║   ██║██║██║     ██║   ██║
+╚██████╔╝╚██████╔╝██║███████╗╚██████╔╝
+ ╚═══██╗ ╚═════╝ ╚═╝╚══════╝ ╚═════╝ 
+     ██║
+     ╚═╝
+
+"$ORANGE├────────────────────────────────────────────┤$RESET"
+ "$ORANGE│$RESET                                            $ORANGE│$RESET"
+ "$ORANGE│$RESET                             $ORANGE│$RESTT"
+$ORANGE│$RESET                              $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET                                  $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET                                $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET                           $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET                                    $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET                                            $ORANGE│$RESET"
+echo -e "$ORANGE└────────────────────────────────────────────┘$RESET"
 EOF
 
 echo -e "$RESET"
 
- 
-echo -e "$ORANGE   ┌───────────────┐  ┌───────────────┐  ┌────────────────────────┐$RESET"
-echo -e "$ORANGE   │$RESET$WHITE Version $VERSION $ORANGE│$RESET  $ORANGE│$RESET $WHITE Quilo $WHITE BOT   $ORANGE│$RESET  $ORANGE│$RESET$WHITE Support:@Quilo_support $ORANGE│$RESET $RESET"
-echo -e "$ORANGE   └───────────────┘  └───────────────┘  └────────────────────────┘$RESET"
 
+echo -e "$ORANGE┌───────────────┐  ┌───────────────┐  ┌─────────────────────────┐$RESET"
+echo -e "$ORANGE│$RESET $WHIT Version $VERSION$ORANGE│$RESET  $ORANGE│$RESET $ORANGE Quilo $WHITE BOT   $ORANGE│$RESET  $ORANGE│$RESET $WHITE Support: @Quilo_support$ORANGE│$RESET $RESET"
+echo -e "$ORANGE└───────────────┘  └───────────────┘  └─────────────────────────┘$RESET"
 
-  echo ""
-
-echo -e   "$ORANGE   ┌─────────────────────────$WHITE MAIN MENU$ORANGE ──────────────────────────┐$RESET"
-echo -e "$ORANGE   │$RESET                                                              $ORANGE│$RESET"
-echo -e "$ORANGE   │$RESET$ORANGE 1.$RESET$WHITE Install Bot $RESET                                              $ORANGE│$RESET"
-echo -e "$ORANGE   │$RESET$ORANGE 2.$RESET$WHITE Update Bot $RESET                                               $ORANGE│$RESET"
-echo -e "$ORANGE   │$RESET$ORANGE 3.$RESET$WHITE Backup $RESET                                                   $ORANGE│$RESET"
-echo -e "$ORANGE   │$RESET$ORANGE 4.$RESET$WHITE Restore  $RESET                                                 $ORANGE│$RESET"
-echo -e "$ORANGE   │$RESET$ORANGE 5.$RESET$WHITE Uninstall Bot $RESET                                            $ORANGE│$RESET"
-echo -e "$ORANGE   │$RESET$ORANGE 6.$RESET$WHITE Exit $RESET                                                     $ORANGE│$RESET"
-echo -e "$ORANGE   └──────────────────────────────────────────────────────────────┘$RESET"
-
-  echo ""
-
-while true
-do
 
 echo ""
 
-echo -ne "$WHITE Enter option: $RESET"
+echo -e "$ORANGE┌────────────────────────────────────────────┐$RESET"
+echo -e "$ORANGE│$RESET                  $WHITE MAIN MENU $RESET               $ORANGE│$RESET"
+echo -e "$ORANGE├────────────────────────────────────────────┤$RESET"
+echo -e "$ORANGE│$RESET                                            $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET  $ORANGE1.$RESET $WHITE Install Bot $RESET                           $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET  $ORANGE2.$RESET $WHITE Update Bot $RESET                            $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET  $ORANGE3.$RESET $WHITE Backup $RESET                                $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET  $ORANGE4.$RESET $WHITE Restore  $RESET                              $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET  $ORANGE5.$RESET $WHITE Uninstall Bot $RESET                         $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET  $ORANGE6.$RESET $WHITE Exit $RESET                                  $ORANGE│$RESET"
+echo -e "$ORANGE│$RESET                                            $ORANGE│$RESET"
+echo -e "$ORANGE└────────────────────────────────────────────┘$RESET"
 
-read choice
+echo ""
 
-
-if [[ "$choice" =~ ^[1-6]$ ]]; then
-
-    break
-
-else
-
-    echo ""
-    echo -e "$ORANGE Invalid option! Please select 1-6$RESET"
-    sleep 1
-
-    clear
-
-    # دوباره منو را نشان بده
-    exec "$0"
-
-fi
-
-done
-
+read -p "Enter option: " choice
 
 #################################
 # BACKUP
