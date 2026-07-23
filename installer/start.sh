@@ -1,5 +1,7 @@
 #!/bin/bash
 
+exec < /dev/tty
+
 clear
 
 echo "Downloading Quilo..."
@@ -14,4 +16,4 @@ cd Quilo-bot
 
 chmod +x installer/install.sh
 
-exec bash installer/install.sh < /dev/tty
+exec bash installer/install.sh
