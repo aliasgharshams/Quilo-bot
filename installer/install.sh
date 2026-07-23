@@ -246,7 +246,7 @@ echo "$SELECTED"
 
 echo ""
 
-read -p "Continue? (yes/no): " CONFIRM
+read -p "Continue? (yes/no): " CONFIRM < /dev/tty
 
 
 
@@ -567,8 +567,7 @@ echo -e "$ORANGE Uninstall Quilo Bot $RESET"
 
 
 
-read -p "Are you sure? (yes/no): " CONFIRM
-
+read -p "Are you sure? (yes/no): " CONFIRM < /dev/tty
 
 
 if [ "$CONFIRM" != "yes" ]; then
