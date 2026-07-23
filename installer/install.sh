@@ -52,29 +52,23 @@ echo -e "$ORANGE   │$RESET$ORANGE 6.$RESET$WHITE Exit $RESET                  
 echo -e "$ORANGE   └──────────────────────────────────────────────────────────────┘$RESET"
 
   echo ""
-
-while true
-do
-
-echo ""
 echo -ne "$WHITE Enter option: $RESET"
+
 read choice
 
 case $choice in
 
 1|2|3|4|5|6)
-    break
     ;;
-
+    
 *)
     echo ""
     echo -e "$ORANGE Invalid option! Please select 1-6$RESET"
     sleep 2
+    exec "$0"
     ;;
 
 esac
-
-done
 
 #################################
 # BACKUP
