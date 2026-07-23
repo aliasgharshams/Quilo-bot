@@ -108,7 +108,7 @@ case $choice in
     echo -e "$ORANGE Invalid option! Please select 1-6$RESET"
     sleep 2
 read -p "Press Enter to return menu..."
-   
+
  exec "$(realpath "$0")"
     ;;
 
@@ -175,7 +175,6 @@ echo -e "$ORANGE $BACKUP_DIR/quilo_backup_$DATE.tar.gz $RESET"
 
 
 read -p "Press Enter to return menu..."
-
 
 exec "$(realpath "$0")"
 
