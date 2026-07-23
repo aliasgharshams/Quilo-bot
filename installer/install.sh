@@ -57,31 +57,24 @@ while true
 do
 
 echo ""
-
 echo -ne "$WHITE Enter option: $RESET"
-
 read choice
 
+case $choice in
 
-if [[ "$choice" =~ ^[1-6]$ ]]; then
-
+1|2|3|4|5|6)
     break
+    ;;
 
-else
-
+*)
     echo ""
     echo -e "$ORANGE Invalid option! Please select 1-6$RESET"
-    sleep 1
+    sleep 2
+    ;;
 
-    clear
-
-    # دوباره منو را نشان بده
-    exec "$0"
-
-fi
+esac
 
 done
-
 
 #################################
 # BACKUP
