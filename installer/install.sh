@@ -107,7 +107,9 @@ case $choice in
     echo ""
     echo -e "$ORANGE Invalid option! Please select 1-6$RESET"
     sleep 2
-read -p "Press Enter to return menu..."
+read -p "
+
+Press Enter to return menu..." < /dev/tty
 
  exec "$(realpath "$0")"
     ;;
@@ -174,7 +176,7 @@ echo -e "$WHITE Saved file:$RESET"
 echo -e "$ORANGE $BACKUP_DIR/quilo_backup_$DATE.tar.gz $RESET"
 
 
-read -p "Press Enter to return menu..."
+read -p "Press Enter to return menu..." < /dev/tty
 
 exec "$(realpath "$0")"
 
@@ -252,7 +254,7 @@ if [ "$CONFIRM" != "yes" ]; then
 
 echo -e "$RED Cancelled $RESET"
 
-read -p "Press Enter to return menu..."
+read -p "Press Enter to return menu..." < /dev/tty
 
 exec "$(realpath "$0")"
 
@@ -298,8 +300,7 @@ echo ""
 echo -e "$GREEN Restore completed ✅ $RESET"
 
 
-
-read -p "Press Enter to return menu..."
+read -p "Press Enter to return menu..." < /dev/tty
 
 exec "$(realpath "$0")"
 
@@ -353,8 +354,7 @@ echo ""
 echo -e "$GREEN Update completed ✅ $RESET"
 
 
-read -p "Press Enter to return menu..."
-
+read -p "Press Enter to return menu..." < /dev/tty
 
 exec "$(realpath "$0")"
 
@@ -548,8 +548,7 @@ echo -e "$ORANGE Domain: https://$DOMAIN $RESET"
 echo "=============================="
 
 
-
-read -p "Press Enter to return menu..."
+read -p "Press Enter to return menu..." < /dev/tty
 
 exec "$(realpath "$0")"
 
@@ -576,7 +575,7 @@ if [ "$CONFIRM" != "yes" ]; then
 
 echo -e "$RED Cancelled $RESET"
 
-read -p "Press Enter to return menu..."
+read -p "Press Enter to return menu..." < /dev/tty
 
 exec "$(realpath "$0")"
 
@@ -612,9 +611,7 @@ echo ""
 
 echo -e "$GREEN Quilo removed successfully ✅ $RESET"
 
-
-
-read -p "Press Enter to return menu..."
+read -p "Press Enter to return menu..." < /dev/tty
 
 exec "$(realpath "$0")"
 
