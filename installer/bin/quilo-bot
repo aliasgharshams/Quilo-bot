@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd /var/www/Quilo-bot
+
+bash installer/install.sh
+
