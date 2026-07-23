@@ -14,4 +14,4 @@ cd Quilo-bot
 
 chmod +x installer/install.sh
 
-bash installer/install.sh
+exec bash installer/install.sh < /dev/tty
