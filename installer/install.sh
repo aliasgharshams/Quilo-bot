@@ -569,10 +569,9 @@ echo -e "$ORANGE Uninstall Quilo Bot $RESET"
 
 read -p "Are you sure? (yes/no): " CONFIRM < /dev/tty
 
-
 if [ "$CONFIRM" != "yes" ]; then
 
-echo -e "$RED Cancelled $RESET"
+echo "Cancelled"
 
 read -p "Press Enter to return menu..." < /dev/tty
 
@@ -580,6 +579,7 @@ exec "$(realpath "$0")"
 
 fi
 
+rm -rf /var/www/Quilo-bot
 
 
 echo ""
@@ -612,8 +612,7 @@ echo -e "$GREEN Quilo removed successfully ✅ $RESET"
 
 read -p "Press Enter to return menu..." < /dev/tty
 
-exec "$(realpath "$0")"
-
+exit 0
 
 
 fi
