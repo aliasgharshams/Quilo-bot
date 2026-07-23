@@ -54,13 +54,28 @@ echo -e "$ORANGE   │$RESET$ORANGE 6.$RESET$WHITE Exit $RESET                  
 echo -e "$ORANGE   └──────────────────────────────────────────────────────────────┘$RESET"
 
   echo ""
+
+while true
+do
+
 echo -ne "$WHITE Enter option: $RESET"
 
-read -r choice
+read -r choice </dev/tty
 
-choice=$(echo "$choice" | tr -d '\r\n' | xargs)
+case "$choice" in
 
-echo "DEBUG: [$choice]"
+1|2|3|4|5|6)
+    break
+    ;;
+
+*)
+    echo ""
+    echo -e "$ORANGE Invalid option! Please select 1-6$RESET"
+    ;;
+
+esac
+
+done
 
 case $choice in
 
