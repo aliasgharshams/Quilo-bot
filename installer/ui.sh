@@ -4,12 +4,12 @@ ORANGE="\e[38;5;208m"
 WHITE="\e[97m"
 RESET="\e[0m"
 
+BASE="/var/www/Quilo-bot"
+
 clear
 
 
 # LOGO
-
-echo -e "${ORANGE}"
 
 echo -e "${ORANGE}"
 
@@ -23,11 +23,11 @@ SPACE=$(( (75-LEN)/2 ))
 
 printf "│%${SPACE}s%s%$((75-SPACE-LEN))s│\n" "" "$line" ""
 
-done < /var/www/Quilo-bot/installer/logo.txt
+done < "$BASE/installer/logo.txt"
+
 
 echo "╰───────────────────────────────────────────────────────────────────────────╯"
 
-echo -e "${RESET}"
 echo -e "${RESET}"
 
 
@@ -38,36 +38,47 @@ echo ""
 
 echo -e "${ORANGE}+----------------------+ +----------------------+ +----------------------+${RESET}"
 
-echo -e "${ORANGE}|${RESET}     ${WHITE}Version 0.1.0${RESET}      ${ORANGE}|${RESET}      ${ORANGE}Quilo${WHITE} bot${RESET}       ${ORANGE}|${RESET} ${WHITE}Support: @Quilo_support${RESET} ${ORANGE}|${RESET}"
+echo -e "${ORANGE}|${RESET}     ${WHITE}Version 0.1.0${RESET}      ${ORANGE}|${RESET}      ${ORANGE}Quilo ${WHITE}bot${RESET}       ${ORANGE}|${RESET} ${WHITE}Support: @Quilo_support${RESET} ${ORANGE}|${RESET}"
 
 echo -e "${ORANGE}+----------------------+ +----------------------+ +----------------------+${RESET}"
 
+
+echo ""
+
+
+echo ""
+
+# MAIN MENU
 
 echo -e "${ORANGE}"
 
 echo "╭──────────────────────────── MAIN MENU ─────────────────────────────╮"
 
-echo "│                                                                    │"
+echo -e "│                                                                    │"
 
-echo -e "│  ${ORANGE}1.${WHITE} Install Bot                                                   ${ORANGE}│"
+echo -e "│        ${WHITE}1. Install Bot${ORANGE}                                             │"
 
-echo -e "│  ${ORANGE}2.${WHITE} Delete Bot                                                    ${ORANGE}│"
+echo -e "│        ${WHITE}2. Delete Bot${ORANGE}                                              │"
 
-echo -e "│  ${ORANGE}3.${WHITE} Edit Config                                                   ${ORANGE}│"
+echo -e "│        ${WHITE}3. Edit Config${ORANGE}                                              │"
 
-echo -e "│  ${ORANGE}4.${WHITE} Uninstall                                                     ${ORANGE}│"
+echo -e "│        ${WHITE}4. Update System${ORANGE}                                             │"
 
-echo -e "│  ${ORANGE}5.${WHITE} Exit                                                          ${ORANGE}│"
+echo -e "│        ${WHITE}5. Uninstall${ORANGE}                                                 │"
 
-echo "│                                                                    │"
+echo -e "│        ${WHITE}6. Exit${ORANGE}                                                       │"
+
+echo -e "│                                                                    │"
 
 echo "╰────────────────────────────────────────────────────────────────────╯"
 
 echo -e "${RESET}"
 
+
 echo ""
 
 echo -ne "${ORANGE}> ${WHITE}Enter option: ${RESET}"
+
 
 read option
 
@@ -77,33 +88,40 @@ case $option in
 
 1)
 
-bash /var/www/Quilo-bot/installer/installer.sh
+bash "$BASE/installer/install.sh"
 
 ;;
 
 
 2)
 
-bash /var/www/Quilo-bot/installer/delete.sh
+bash "$BASE/installer/delete.sh"
 
 ;;
 
 
 3)
 
-bash /var/www/Quilo-bot/installer/edit_config.sh
+bash "$BASE/installer/edit_config.sh"
 
 ;;
 
 
 4)
 
-bash /var/www/Quilo-bot/installer/uninstall.sh
+bash "$BASE/installer/update.sh"
 
 ;;
 
 
 5)
+
+bash "$BASE/installer/uninstall.sh"
+
+;;
+
+
+6)
 
 clear
 
@@ -120,8 +138,9 @@ echo "Invalid option"
 
 sleep 2
 
-bash /var/www/Quilo-bot/installer/ui.sh
+bash "$BASE/installer/ui.sh"
 
 ;;
+
 
 esac
