@@ -209,7 +209,7 @@ if [ "$COUNT" = "0" ]; then
 
 echo -e "$RED No backup found $RESET"
 
-read -p "Press Enter to return menu..."
+read -p "Press Enter to return menu..." < /dev/tty
 
 exec "$(realpath "$0")"
 
@@ -228,8 +228,7 @@ done
 
 echo ""
 
-read -p "Select backup number: " NUMBER
-
+read -p "Select backup number: " NUMBER < /dev/tty
 
 
 SELECTED=${FILES[$((NUMBER-1))]}
