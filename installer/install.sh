@@ -435,7 +435,6 @@ read -p "Domain: " DOMAIN
 
 
 
-
 cat > app/config/config.php <<EOF
 <?php
 
