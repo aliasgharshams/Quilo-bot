@@ -2,20 +2,23 @@
 
 return [
 
-    "telegram" => [
-        "token" => "YOUR_BOT_TOKEN",
-        "admin_id" => "YOUR_ADMIN_ID"
-    ],
+"version"=>"1.2.12",
 
-    "bot" => [
-        "username" => "BOT_USERNAME"
-    ],
+"app"=>[
+"url"=>"https://your-domain.com"
+],
 
-    "db" => [
-        "host" => "localhost",
-        "name" => "quilo",
-        "user" => "quilo_user",
-        "pass" => "YOUR_PASSWORD"
-    ]
+"telegram"=>[
+"token"=>"YOUR_BOT_TOKEN",
+"admin_id"=>"YOUR_ADMIN_ID",
+"username"=>"YOUR_BOT_USERNAME"
+],
+
+"db"=>[
+"host"=>"127.0.0.1",
+"name"=>"quilo",
+"user"=>"YOUR_DB_USER",
+"pass"=>"YOUR_DB_PASSWORD"
+]
 
 ];
