@@ -80,6 +80,43 @@ class Statistics
 
 
 
+    public static function todaySales()
+    {
+
+        $db = self::db();
+
+
+        return $db->query(
+            "SELECT 
+            COUNT(*) as count,
+            COALESCE(SUM(CAST(price_product AS UNSIGNED)),0) as amount
+            FROM invoice
+            WHERE DATE(time_cron)=CURDATE()"
+        )->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+
+
+    public static function monthSales()
+    {
+
+        $db = self::db();
+
+
+        return $db->query(
+            "SELECT 
+            COUNT(*) as count,
+            COALESCE(SUM(CAST(price_product AS UNSIGNED)),0) as amount
+            FROM invoice
+            WHERE MONTH(time_cron)=MONTH(CURDATE())
+            AND YEAR(time_cron)=YEAR(CURDATE())"
+        )->fetch(PDO::FETCH_ASSOC);
+
+    }
+
+
+
     public static function services()
     {
 
@@ -98,6 +135,23 @@ class Statistics
             )->fetchColumn()
 
         ];
+
+    }
+
+
+
+    public static function expiringServices()
+    {
+
+        $db = self::db();
+
+
+        return $db->query(
+            "SELECT COUNT(*) 
+            FROM vpn_accounts
+            WHERE expire_date <= DATE_ADD(NOW(), INTERVAL 7 DAY)
+            AND status='active'"
+        )->fetchColumn();
 
     }
 

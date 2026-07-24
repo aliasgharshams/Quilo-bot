@@ -15,11 +15,19 @@ class StatsHandler
 
         $orders = Statistics::orders();
 
+        $today = Statistics::todaySales();
+
+        $month = Statistics::monthSales();
+
         $services = Statistics::services();
+
+        $expire = Statistics::expiringServices();
 
         $panels = Statistics::panels();
 
         $products = Statistics::products();
+
+        $payments = Statistics::payments();
 
 
 
@@ -30,30 +38,49 @@ class StatsHandler
 👥 کاربران
 
 👤 کل کاربران: {$users["total"]}
-🆕 ثبت نام امروز: {$users["today"]}
+🆕 ثبت‌نام امروز: {$users["today"]}
 💰 مجموع موجودی: {$users["balance"]}
 
 
 🛒 فروش
 
-🧾 تعداد سفارش‌ها: {$orders["total"]}
-✅ سفارش موفق: {$orders["paid"]}
+🧾 کل فروش‌ها: {$orders["total"]}
+✅ فروش موفق: {$orders["success"]}
+💵 مبلغ کل فروش: {$orders["amount"]}
+
+📅 فروش امروز:
+🧾 تعداد: {$today["count"]}
+💰 مبلغ: {$today["amount"]}
+
+📆 فروش ماه جاری:
+🧾 تعداد: {$month["count"]}
+💰 مبلغ: {$month["amount"]}
+
+
+💳 پرداخت‌ها
+
+💳 تعداد پرداخت: {$payments["total"]}
+💰 مجموع پرداخت: {$payments["amount"]}
 
 
 📦 سرویس‌ها
 
-📌 کل سرویس‌ها: {$services["total"]}
-🟢 سرویس فعال: {$services["active"]}
+📌 کل سرویس: {$services["total"]}
+🟢 فعال: {$services["active"]}
+⏳ نزدیک انقضا (۷ روز): {$expire}
 
 
 🖥 پنل‌ها
 
-🧩 تعداد پنل‌ها: {$panels}
+🧩 کل پنل‌ها: {$panels["total"]}
+🟢 فعال: {$panels["active"]}
 
 
 🛍 محصولات
 
-📦 تعداد محصولات: {$products}";
+📦 کل محصولات: {$products["total"]}
+🟢 فعال: {$products["active"]}";
+
 
 
         return [
