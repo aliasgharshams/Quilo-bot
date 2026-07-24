@@ -384,7 +384,7 @@ apt install -y \
 php \
 php-mysql \
 php-curl \
-mysql-server \
+mariadb-server \
 apache2 \
 certbot \
 python3-certbot-apache \
