@@ -11,8 +11,7 @@ require_once __DIR__ . "/../app/bot/core/Admin.php";
 
 require_once __DIR__ . "/../app/bot/keyboards/AdminKeyboard.php";
 require_once __DIR__ . "/../app/bot/keyboards/MainKeyboard.php";
-
-
+require_once __DIR__ . "/../app/bot/handlers/AddPanelHandler.php";
 require_once __DIR__ . "/../app/bot/handlers/AdminHandler.php";
 require_once __DIR__ . "/../app/bot/handlers/StatsHandler.php";
 require_once __DIR__ . "/../app/bot/handlers/StartHandler.php";
@@ -146,6 +145,14 @@ $router->add(
     }
 );
 
+$router->add(
+    "🖥 اضافه کردن پنل",
+    function($update){
+
+        return AddPanelHandler::start($update);
+
+    }
+);
 
 
 $admin_buttons = [
