@@ -1,0 +1,25 @@
+<?php
+
+return [
+
+"version"=>"1.2.12",
+
+"app"=>[
+"url"=>"https://ali.netlinr.shop"
+],
+
+"telegram"=>[
+"token"=>"8453999791:AAElBHJkpVfllKhqTf8-u0N99HYhdHyzHgo",
+"admin_id"=>"8668159136",
+"username"=>"testbotuyq_bot"
+],
+
+"db"=>[
+"host"=>"127.0.0.1",
+"name"=>"quilo",
+"user"=>"quilo",
+"pass"=>"quilo_pass_123"
+]
+
+];
+
