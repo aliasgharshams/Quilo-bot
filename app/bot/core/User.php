@@ -4,6 +4,35 @@ require_once __DIR__ . "/../../database/database.php";
 
 class User
 {
+    public static function count()
+    {
+        $stmt = self::db()->query(
+            "SELECT COUNT(*) FROM users"
+        );
+
+        return $stmt->fetchColumn();
+    }
+
+
+    public static function todayCount()
+    {
+        $stmt = self::db()->query(
+            "SELECT COUNT(*) FROM users WHERE DATE(created_at)=CURDATE()"
+        );
+
+        return $stmt->fetchColumn();
+    }
+
+
+    public static function totalBalance()
+    {
+        $stmt = self::db()->query(
+            "SELECT COALESCE(SUM(balance),0) FROM users"
+        );
+
+        return $stmt->fetchColumn();
+    }
+
     private static $db;
 
 
