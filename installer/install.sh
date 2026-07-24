@@ -424,14 +424,10 @@ echo -e "$WHITE Bot information$RESET"
 
 
 
-read -p "Bot Token: " BOT_TOKEN
-
-read -p "Admin Telegram ID: " ADMIN_ID
-
-read -p "Bot Username: " BOT_USERNAME
-
-read -p "Domain: " DOMAIN
-
+read -p "Bot Token: " BOT_TOKEN < /dev/tty
+read -p "Admin Telegram ID: " ADMIN_ID < /dev/tty
+read -p "Bot Username: " BOT_USERNAME < /dev/tty
+read -p "Domain: " DOMAIN < /dev/tty
 
 
 
