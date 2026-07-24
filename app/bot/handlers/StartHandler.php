@@ -60,7 +60,7 @@ class StartHandler
 
 
              "keyboard" =>
-MainKeyboard::get(8668159136)
+MainKeyboard::get($telegram_id)
 
         ];
 
