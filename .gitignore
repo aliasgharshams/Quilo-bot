@@ -2,6 +2,7 @@ app/config/config.php
 .env
 *.log
 *.sql
+!installer/database.sql
 storage/*
 .vscode/
 .idea/
