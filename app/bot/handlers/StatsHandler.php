@@ -11,16 +11,15 @@ class StatsHandler
     public static function show($update)
     {
 
-
         $users = Statistics::users();
 
-        $sales = Statistics::sales();
-
-        $payments = Statistics::payments();
+        $orders = Statistics::orders();
 
         $services = Statistics::services();
 
         $panels = Statistics::panels();
+
+        $products = Statistics::products();
 
 
 
@@ -37,15 +36,8 @@ class StatsHandler
 
 🛒 فروش
 
-🧾 تعداد سفارش‌ها: {$sales["total"]}
-✅ فروش موفق: {$sales["success"]}
-💵 مبلغ فروش: {$sales["amount"]}
-
-
-💳 پرداخت‌ها
-
-✅ پرداخت موفق: {$payments["count"]}
-💰 مجموع پرداختی: {$payments["amount"]}
+🧾 تعداد سفارش‌ها: {$orders["total"]}
+✅ سفارش موفق: {$orders["paid"]}
 
 
 📦 سرویس‌ها
@@ -56,9 +48,12 @@ class StatsHandler
 
 🖥 پنل‌ها
 
-🧩 کل پنل‌ها: {$panels["total"]}
-🟢 پنل فعال: {$panels["active"]}";
+🧩 تعداد پنل‌ها: {$panels}
 
+
+🛍 محصولات
+
+📦 تعداد محصولات: {$products}";
 
 
         return [

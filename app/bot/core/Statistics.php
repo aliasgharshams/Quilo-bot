@@ -12,9 +12,7 @@ class Statistics
     private static function db()
     {
         if (!self::$db) {
-
             self::$db = Database::connect();
-
         }
 
         return self::$db;
@@ -26,7 +24,6 @@ class Statistics
     {
 
         $db = self::db();
-
 
         return [
 
@@ -50,11 +47,10 @@ class Statistics
 
 
 
-    public static function sales()
+    public static function orders()
     {
 
         $db = self::db();
-
 
         return [
 
@@ -63,36 +59,8 @@ class Statistics
             )->fetchColumn(),
 
 
-            "success" => $db->query(
+            "paid" => $db->query(
                 "SELECT COUNT(*) FROM orders WHERE status='completed'"
-            )->fetchColumn(),
-
-
-            "amount" => $db->query(
-                "SELECT COALESCE(SUM(amount),0) FROM orders WHERE status='completed'"
-            )->fetchColumn()
-
-        ];
-
-    }
-
-
-
-    public static function payments()
-    {
-
-        $db = self::db();
-
-
-        return [
-
-            "count" => $db->query(
-                "SELECT COUNT(*) FROM payments WHERE status='completed'"
-            )->fetchColumn(),
-
-
-            "amount" => $db->query(
-                "SELECT COALESCE(SUM(amount),0) FROM payments WHERE status='completed'"
             )->fetchColumn()
 
         ];
@@ -105,7 +73,6 @@ class Statistics
     {
 
         $db = self::db();
-
 
         return [
 
@@ -127,21 +94,20 @@ class Statistics
     public static function panels()
     {
 
-        $db = self::db();
+        return self::db()->query(
+            "SELECT COUNT(*) FROM vpn_panels"
+        )->fetchColumn();
+
+    }
 
 
-        return [
 
-            "total" => $db->query(
-                "SELECT COUNT(*) FROM vpn_panels"
-            )->fetchColumn(),
+    public static function products()
+    {
 
-
-            "active" => $db->query(
-                "SELECT COUNT(*) FROM vpn_panels WHERE active=1"
-            )->fetchColumn()
-
-        ];
+        return self::db()->query(
+            "SELECT COUNT(*) FROM products"
+        )->fetchColumn();
 
     }
 
