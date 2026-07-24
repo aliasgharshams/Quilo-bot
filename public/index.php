@@ -21,6 +21,9 @@ require_once __DIR__ .
 "/../app/bot/handlers/AdminHandler.php";
 
 require_once __DIR__ .
+"/../app/bot/handlers/StatsHandler.php";
+
+require_once __DIR__ .
 "/../app/bot/handlers/StartHandler.php";
 
 require_once __DIR__ .
@@ -74,17 +77,12 @@ $router->add(
     }
 );
 
+
 $router->add(
     "📊 آمار ربات",
     function($update){
 
-        return [
-            "text"=>"📊 آمار ربات
-
-
-در حال ساخت...",
-            "keyboard"=>AdminKeyboard::get()
-        ];
+        return StatsHandler::show($update);
 
     }
 );
