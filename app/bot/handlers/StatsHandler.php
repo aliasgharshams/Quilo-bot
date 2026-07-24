@@ -1,97 +1,114 @@
 <?php
 
 require_once __DIR__ . "/../core/Statistics.php";
-require_once __DIR__ . "/../keyboards/AdminKeyboard.php";
 
 
 class StatsHandler
 {
 
-
     public static function show($update)
     {
 
         $users = Statistics::users();
-
         $orders = Statistics::orders();
-
-        $today = Statistics::todaySales();
-
-        $month = Statistics::monthSales();
-
         $services = Statistics::services();
-
-        $expire = Statistics::expiringServices();
-
         $panels = Statistics::panels();
-
-        $products = Statistics::products();
-
         $payments = Statistics::payments();
 
 
-
         $text =
-"📊 آمار کلی ربات
+"📊 <b>آمار کلی ربات</b>
+
+━━━━━━━━━━━━━━
+
+👥 <b>تعداد کل کاربران:</b> {$users["total"]} نفر
+💳 <b>کاربران دارای خرید:</b> {$orders["success"]} نفر
+🧪 <b>اکانت‌های تست:</b> {$services["total"]} نفر
+
+💰 <b>موجودی کل کاربران:</b> {$users["balance"]} تومان
 
 
-👥 کاربران
+🧾 <b>تعداد کل فروش:</b> {$orders["total"]} عدد
+📄 <b>تعداد فروش سرویس‌های فعال:</b> {$services["active"]} عدد
 
-👤 کل کاربران: {$users["total"]}
-🆕 ثبت‌نام امروز: {$users["today"]}
-💰 مجموع موجودی: {$users["balance"]}
+💵 <b>جمع کل فروش:</b> {$orders["amount"]} تومان
+💵 <b>جمع فروش سرویس‌های فعال:</b> {$orders["amount"]} تومان
 
+🔄 <b>جمع کل تمدید:</b> 0 تومان
 
-🛒 فروش
+📈 <b>نرخ تبدیل به مشتری:</b> 0٪
 
-🧾 کل فروش‌ها: {$orders["total"]}
-✅ فروش موفق: {$orders["success"]}
-💵 مبلغ کل فروش: {$orders["amount"]}
+💳 <b>میانگین خرید هر مشتری:</b> 0 تومان
 
-📅 فروش امروز:
-🧾 تعداد: {$today["count"]}
-💰 مبلغ: {$today["amount"]}
-
-📆 فروش ماه جاری:
-🧾 تعداد: {$month["count"]}
-💰 مبلغ: {$month["amount"]}
+📅 <b>آخرین سرویس معامله شده:</b> 0 تومان
 
 
-💳 پرداخت‌ها
+👨‍💼 <b>تعداد کل نمایندگان:</b> 0 نفر
 
-💳 تعداد پرداخت: {$payments["total"]}
-💰 مجموع پرداخت: {$payments["amount"]}
+🔷 <b>نمایندگان نوع N1:</b> 0 نفر
+🔶 <b>نمایندگان نوع N2:</b> 0 نفر
 
-
-📦 سرویس‌ها
-
-📌 کل سرویس: {$services["total"]}
-🟢 فعال: {$services["active"]}
-⏳ نزدیک انقضا (۷ روز): {$expire}
+🧩 <b>تعداد پنل‌ها:</b> {$panels["total"]}
 
 
-🖥 پنل‌ها
+📌 <b>نام درگاه:</b> کارت به کارت
 
-🧩 کل پنل‌ها: {$panels["total"]}
-🟢 فعال: {$panels["active"]}
+- تعداد پرداخت موفق: {$payments["total"]}
+- جمع پرداختی‌ها: {$payments["amount"]} تومان";
 
 
-🛍 محصولات
+        $keyboard = [
 
-📦 کل محصولات: {$products["total"]}
-🟢 فعال: {$products["active"]}";
+            [
+                [
+                    "text"=>"📊 آمار کل"
+                ]
+            ],
 
+            [
+                [
+                    "text"=>"⏱ یک ساعت اخیر"
+                ]
+            ],
+
+            [
+                [
+                    "text"=>"☁️ امروز"
+                ],
+                [
+                    "text"=>"☀️ دیروز"
+                ]
+            ],
+
+            [
+                [
+                    "text"=>"☀️ ماه فعلی"
+                ],
+                [
+                    "text"=>"☁️ ماه قبل"
+                ]
+            ],
+
+            [
+                [
+                    "text"=>"🗓 مشاهده آمار در تاریخ مشخص"
+                ]
+            ]
+
+        ];
 
 
         return [
 
             "text"=>$text,
 
-            "keyboard"=>AdminKeyboard::get()
+            "keyboard"=>[
+                "keyboard"=>$keyboard,
+                "resize_keyboard"=>true
+            ]
 
         ];
 
     }
-
 
 }
