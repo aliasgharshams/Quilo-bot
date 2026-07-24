@@ -57,45 +57,54 @@ class StatsHandler
 - جمع پرداختی‌ها: {$payments["amount"]} تومان";
 
 
+
         $keyboard = [
 
             [
                 [
-                    "text"=>"📊 آمار کل"
+                    "text"=>"📊 آمار کل",
+                    "callback_data"=>"stats_all"
                 ]
             ],
 
             [
                 [
-                    "text"=>"⏱ یک ساعت اخیر"
+                    "text"=>"⏱ یک ساعت اخیر",
+                    "callback_data"=>"stats_hour"
                 ]
             ],
 
             [
                 [
-                    "text"=>"☁️ امروز"
+                    "text"=>"☁️ امروز",
+                    "callback_data"=>"stats_today"
                 ],
                 [
-                    "text"=>"☀️ دیروز"
+                    "text"=>"☀️ دیروز",
+                    "callback_data"=>"stats_yesterday"
                 ]
             ],
 
             [
                 [
-                    "text"=>"☀️ ماه فعلی"
+                    "text"=>"☀️ ماه فعلی",
+                    "callback_data"=>"stats_month"
                 ],
                 [
-                    "text"=>"☁️ ماه قبل"
+                    "text"=>"☁️ ماه قبل",
+                    "callback_data"=>"stats_last_month"
                 ]
             ],
 
             [
                 [
-                    "text"=>"🗓 مشاهده آمار در تاریخ مشخص"
+                    "text"=>"🗓 مشاهده آمار در تاریخ مشخص",
+                    "callback_data"=>"stats_date"
                 ]
-            ]
+            ],
 
         ];
+
 
 
         return [
@@ -103,8 +112,7 @@ class StatsHandler
             "text"=>$text,
 
             "keyboard"=>[
-                "keyboard"=>$keyboard,
-                "resize_keyboard"=>true
+                "inline_keyboard"=>$keyboard
             ]
 
         ];
