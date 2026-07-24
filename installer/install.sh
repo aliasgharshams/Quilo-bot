@@ -301,7 +301,8 @@ echo -e "$GREEN Restore completed ✅ $RESET"
 
 read -p "Press Enter to return menu..." < /dev/tty
 
-exec "$(realpath "$0")"
+cd /var/www/Quilo-bot/installer
+exec ./install.sh
 
 fi
 
