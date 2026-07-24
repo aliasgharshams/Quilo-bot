@@ -2,7 +2,7 @@
 
 return [
 
-"version"=>"1.2.13",
+"version"=>"1.2.14",
 
 "app"=>[
 "url"=>"https://your-domain.com"
