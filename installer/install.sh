@@ -283,9 +283,10 @@ cp -r /tmp/quilo_restore/quilo_backup/Quilo-bot \
 echo -e "$WHITE Restoring database...$RESET"
 
 
-mysql quilo < \
-/tmp/quilo_restore/quilo_backup/quilo_database.sql
-
+if ! mysql quilo < /tmp/quilo_restore/quilo_backup/quilo_database.sql; then
+    echo -e "$RED Database restore failed $RESET"
+    exit 1
+fi
 
 
 chown -R www-data:www-data /var/www/Quilo-bot
