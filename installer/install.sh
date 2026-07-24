@@ -451,8 +451,8 @@ return [
 "db"=>[
 "host"=>"127.0.0.1",
 "name"=>"quilo",
-"user"=>"root",
-"pass"=>""
+"user"=>"quilo",
+"pass"=>"quilo_pass_123"
 ]
 
 ];
@@ -466,7 +466,28 @@ echo ""
 echo -e "$WHITE Creating database...$RESET"
 
 
-mysql < installer/database.sql
+mysql <<EOF
+
+CREATE DATABASE IF NOT EXISTS quilo;
+
+CREATE USER IF NOT EXISTS 'quilo'@'localhost'
+IDENTIFIED BY 'quilo_pass_123';
+
+CREATE USER IF NOT EXISTS 'quilo'@'127.0.0.1'
+IDENTIFIED BY 'quilo_pass_123';
+
+GRANT ALL PRIVILEGES ON quilo.*
+TO 'quilo'@'localhost';
+
+GRANT ALL PRIVILEGES ON quilo.*
+TO 'quilo'@'127.0.0.1';
+
+FLUSH PRIVILEGES;
+
+EOF
+
+
+mysql quilo < installer/database.sql
 
 
 
