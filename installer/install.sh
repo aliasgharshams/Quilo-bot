@@ -441,7 +441,7 @@ cat > app/config/config.php <<EOF
 
 return [
 
-"version"=>"1.2.10",
+"version"=>"1.2.11",
 
 "app"=>[
 "url"=>"https://$DOMAIN"
