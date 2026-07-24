@@ -11,11 +11,15 @@ class Statistics
 
     private static function db()
     {
+
         if (!self::$db) {
+
             self::$db = Database::connect();
+
         }
 
         return self::$db;
+
     }
 
 
@@ -24,6 +28,7 @@ class Statistics
     {
 
         $db = self::db();
+
 
         return [
 
@@ -52,15 +57,21 @@ class Statistics
 
         $db = self::db();
 
+
         return [
 
             "total" => $db->query(
-                "SELECT COUNT(*) FROM orders"
+                "SELECT COUNT(*) FROM invoice"
             )->fetchColumn(),
 
 
-            "paid" => $db->query(
-                "SELECT COUNT(*) FROM orders WHERE status='completed'"
+            "success" => $db->query(
+                "SELECT COUNT(*) FROM invoice WHERE Status='success'"
+            )->fetchColumn(),
+
+
+            "amount" => $db->query(
+                "SELECT COALESCE(SUM(CAST(price_product AS UNSIGNED)),0) FROM invoice"
             )->fetchColumn()
 
         ];
@@ -73,6 +84,7 @@ class Statistics
     {
 
         $db = self::db();
+
 
         return [
 
@@ -94,9 +106,21 @@ class Statistics
     public static function panels()
     {
 
-        return self::db()->query(
-            "SELECT COUNT(*) FROM vpn_panels"
-        )->fetchColumn();
+        $db = self::db();
+
+
+        return [
+
+            "total" => $db->query(
+                "SELECT COUNT(*) FROM vpn_panels"
+            )->fetchColumn(),
+
+
+            "active" => $db->query(
+                "SELECT COUNT(*) FROM vpn_panels WHERE active=1"
+            )->fetchColumn()
+
+        ];
 
     }
 
@@ -105,9 +129,44 @@ class Statistics
     public static function products()
     {
 
-        return self::db()->query(
-            "SELECT COUNT(*) FROM products"
-        )->fetchColumn();
+        $db = self::db();
+
+
+        return [
+
+            "total" => $db->query(
+                "SELECT COUNT(*) FROM products"
+            )->fetchColumn(),
+
+
+            "active" => $db->query(
+                "SELECT COUNT(*) FROM products WHERE status='active'"
+            )->fetchColumn()
+
+        ];
+
+    }
+
+
+
+    public static function payments()
+    {
+
+        $db = self::db();
+
+
+        return [
+
+            "total" => $db->query(
+                "SELECT COUNT(*) FROM payments"
+            )->fetchColumn(),
+
+
+            "amount" => $db->query(
+                "SELECT COALESCE(SUM(amount),0) FROM payments"
+            )->fetchColumn()
+
+        ];
 
     }
 
